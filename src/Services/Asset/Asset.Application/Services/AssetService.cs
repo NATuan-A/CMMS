@@ -13,7 +13,7 @@ namespace Asset.Application.Services
 
         public AssetService(IAssetRepository assetRepository, IMapper mapper) {
             _mapper = mapper;
-            _assetRepository = _assetRepository;
+            _assetRepository = assetRepository;
         }
 
         public IResult GetAssets()

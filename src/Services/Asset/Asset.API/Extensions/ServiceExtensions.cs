@@ -1,4 +1,6 @@
-﻿using Infrastructure.Configurations;
+﻿using AutoMapper;
+using AutoMapper.Internal;
+using Infrastructure.Configurations;
 using Infrastructure.Extensions;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Shared.Configurations;
@@ -17,6 +19,15 @@ namespace Asset.API.Extensions
             var databaseSettings = configuration.GetSection(nameof(DatabaseSettings))
                 .Get<DatabaseSettings>();
             services.AddSingleton(databaseSettings);
+
+            var mapperConfig = new MapperConfiguration(mc =>
+            {
+                mc.Internal().MethodMappingEnabled = false;
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mapperConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             return services;
         }

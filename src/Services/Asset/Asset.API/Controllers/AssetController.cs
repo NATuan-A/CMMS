@@ -29,7 +29,7 @@ namespace Asset.API.Controllers
 
         #region CRUD
         [HttpGet("getAll", Name = RouteNames.GetAssets)]
-        public async Task<ActionResult<List<AssetDto>>> GetOrdersByUserName()
+        public ActionResult<List<AssetDto>> GetOrdersByUserName()
         {
             var result = _assetService.GetAssets();
             return Ok(result);
